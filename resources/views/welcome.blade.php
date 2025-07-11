@@ -1,153 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <!-- Primary Meta Tags -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AnimeFlix | Streaming Anime HD Gratis - Koleksi Terlengkap</title>
-    <meta name="description"
-        content="Nonton anime subtitle Indonesia & Inggris kualitas HD. Ribuan judul anime terbaru dan klasik tersedia dengan update episode tercepat. Gratis tanpa iklan mengganggu.">
-    <meta name="keywords"
-        content="anime, streaming anime, nonton anime, anime sub indo, anime terbaru, anime HD, anime gratis, download anime">
-    <meta name="author" content="Elang Atha Zahran">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph / Facebook (Social Media) -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://animeflix.example.com/">
-    <meta property="og:title" content="AnimeFlix | Streaming Anime HD Gratis - Koleksi Terlengkap">
-    <meta property="og:description"
-        content="Nonton anime subtitle Indonesia & Inggris kualitas HD. Ribuan judul anime terbaru dan klasik tersedia dengan update episode tercepat.">
-    <meta property="og:image" content="https://animeflix.example.com/images/social-preview.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:site_name" content="AnimeFlix">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://animeflix.example.com/">
-    <meta property="twitter:title" content="AnimeFlix | Streaming Anime HD Gratis - Koleksi Terlengkap">
-    <meta property="twitter:description"
-        content="Nonton anime subtitle Indonesia & Inggris kualitas HD. Ribuan judul anime terbaru dan klasik tersedia dengan update episode tercepat.">
-    <meta property="twitter:image" content="https://animeflix.example.com/images/social-preview.jpg">
-
-    <!-- Favicon & App Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#9c27b0">
-    <meta name="msapplication-TileColor" content="#0f0f1a">
-    <meta name="theme-color" content="#0f0f1a">
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://animeflix.example.com/">
-
-    <!-- Fonts & Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Noto+Sans:wght@400;500;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Preload Critical Resources -->
-    <link rel="preload" href="styles.css" as="style">
-    <link rel="preload" href="script.js" as="script">
-    <link rel="preload" href="images/hero-banner.jpg" as="image">
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="{{ asset('css/home/style.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-
-    {{-- web icon --}}
-    <link rel="web icon" type="icon" href="{{ asset('images/assets/animeflix-icon.svg') }}">
-
-    <!-- Structured Data / Schema Markup -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "AnimeFlix",
-        "url": "https://animeflix.example.com",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://animeflix.example.com/search?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-        },
-        "description": "Platform streaming anime terlengkap dengan kualitas HD dan update episode tercepat",
-        "publisher": {
-            "@type": "Organization",
-            "name": "AnimeFlix",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https://animeflix.example.com/images/logo.png"
-            }
-        }
-    }
-    </script>
-</head>
-
-<body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="navbar-container">
-            <div class="logo-container">
-                <a href="#" class="logo">Anime<span>Flix</span></a>
-            </div>
-            <div class="nav-menu">
-                <ul class="nav-list">
-                    <li class="nav-item active"><a href="#">Home</a></li>
-                    <li class="nav-item"><a href="#">Genres</a></li>
-                    <li class="nav-item"><a href="#">New Releases</a></li>
-                </ul>
-            </div>
-            <div class="nav-right">
-                <div class="search-box">
-                    <input type="text" placeholder="Search anime...">
-                    <button><i class="fas fa-search"></i></button>
-                </div>
-                @if (Auth::check())
-                    <div class="profile-container" id="profile-dropdown-trigger">
-                        <img src="{{ auth()->user()->avatar ? asset('storage/' . auth()->user()->avatar) : asset('images/profile/default.png') }}"
-                            alt="Profile" class="profile-pic">
-                        <span class="profile-name">{{ auth()->user()->name }}</span>
-                        <div class="profile-dropdown" id="profile-dropdown">
-                            <ul>
-                                <li><a href="{{ route('profile.edit') }}"><i class="fas fa-user"></i> Profile</a></li>
-                                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
-                                <li>
-                                    <form method="POST" action="{{ route('logout') }}" id="logout-form">
-                                        @csrf
-                                        <a href="#"
-                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            <i class="fas fa-sign-out-alt"></i> Sign Out
-                                        </a>
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                @else
-                    <button class="subscribe-btn" id="sign-in">Sign in</button>
-                @endif
-            </div>
-            <div class="hamburger-menu">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </nav>
-
+@extends('layouts.main')
+@section('content')
     <!-- Hero Banner with Swiper -->
     <section class="hero-banner">
         <div class="swiper heroSwiper">
             <div class="swiper-wrapper">
                 <!-- Slide 1 -->
                 <div class="swiper-slide">
-                    <div class="slide-content"
-                        style="background-image: url('../images/anime/One Piece Wano Kuni Arc.jpg')">
+                    <div class="slide-content" style="background-image: url('../images/anime/One Piece Wano Kuni Arc.jpg')">
                         <div class="hero-overlay"></div>
                         <div class="hero-content">
                             <h1>One Piece: Wano Kuni Arc</h1>
@@ -161,7 +20,8 @@
                                 resembling feudal Japan,
                                 to take down the tyrannical shogun Orochi and free the country from Kaido's rule.</p>
                             <div class="action-buttons">
-                                <button class="play-btn"><i class="fas fa-play"></i> Watch Now</button>
+                                <button class="play-btn" id="route-description"><i class="fas fa-play"></i> Watch
+                                    Now</button>
                                 <button class="add-btn"><i class="fas fa-plus"></i> My List</button>
                             </div>
                         </div>
@@ -497,8 +357,7 @@
                         <p>110 Titles</p>
                     </div>
                 </div>
-                <div class="genre-card"
-                    style="background-image: url('../images/anime/Kaoru Hana wa Rin to Saku.jpg')">
+                <div class="genre-card" style="background-image: url('../images/anime/Kaoru Hana wa Rin to Saku.jpg')">
                     <div class="genre-overlay"
                         style="background: linear-gradient(135deg, rgba(46, 204, 113, 0.7), rgba(39, 174, 96, 0.7))">
                     </div>
@@ -529,93 +388,11 @@
         </section>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-logo">
-                <a href="#" class="logo">Anime<span>Flix</span></a>
-                <p>Your ultimate anime streaming platform</p>
-            </div>
-            <div class="footer-links">
-                <div class="footer-column">
-                    <h4>Navigation</h4>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">TV Series</a></li>
-                        <li><a href="#">Movies</a></li>
-                        <li><a href="#">New Releases</a></li>
-                        <li><a href="#">Popular</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="#">Terms of Use</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Cookie Policy</a></li>
-                        <li><a href="#">DMCA</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">FAQ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Connect With Us</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-discord"></i></a>
-                    </div>
-                    <div class="app-download">
-                        <p>Download our app</p>
-                        <div class="app-buttons">
-                            <a href="#"><img src="{{ asset('images/assets/google play.png') }}"
-                                    alt="App Store"></a>
-                            <a href="#"><img src="{{ asset('images/assets/app store.png') }}"
-                                    alt="Google Play"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2023 AnimeFlix. All Rights Reserved.</p>
-        </div>
-    </footer>
-
-
-    <!-- Custom Cursor SVG -->
-    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="800" style="display: none">
-        <defs>
-            <filter id="goo">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
-                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 35 -15"
-                    result="goo" />
-                <feComposite in="SourceGraphic" in2="goo" operator="atop" />
-            </filter>
-        </defs>
-    </svg>
-
-    <!-- Custom Cursor -->
-    <div id="cursor" class="Cursor"></div>
-
-
-    <script src="{{ asset('js/home/script.js') }}"></script>
-    <script src="{{ asset('js/home/cursor.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
     <script>
-        const btnSignIn = document.getElementById('sign-in')
-        btnSignIn.addEventListener('click', function() {
-            window.location.href = '/login'
+        const btnRoute = document.getElementById('route-description')
+        btnRoute.addEventListener('click', function() {
+            window.location.href = '/description'
         })
     </script>
-</body>
-
-</html>
+@endsection

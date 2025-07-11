@@ -147,3 +147,6 @@ document.addEventListener('DOMContentLoaded', function () {
         heroSwiper.autoplay.start();
     });
 });
+
+
+// description page
