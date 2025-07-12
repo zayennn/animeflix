@@ -1,17 +1,29 @@
 @extends('layouts.auth')
 @section('content')
     <div class="auth-header">
-        <a href="index.html" class="logo">Anime<span>Flix</span></a>
+        <a href="/" class="logo">Anime<span>Flix</span></a>
         <h1>Create Account</h1>
         <p>Join our anime community today</p>
     </div>
 
-    <form id="registerForm" class="auth-form">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <form method="POST" action="{{ route('register') }}" class="auth-form">
+        @csrf
         <div class="form-group">
             <label for="username">Username</label>
             <div class="input-group">
                 <i class="fas fa-user"></i>
-                <input type="text" id="username" name="username" placeholder="Choose a username" required>
+                <input type="text" id="username" name="username" placeholder="Choose a username" required
+                    value="{{ old('username') }}">
             </div>
         </div>
 
@@ -19,7 +31,8 @@
             <label for="email">Email</label>
             <div class="input-group">
                 <i class="fas fa-envelope"></i>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required
+                    value="{{ old('email') }}">
             </div>
         </div>
 
@@ -41,11 +54,11 @@
         </div>
 
         <div class="form-group">
-            <label for="confirmPassword">Confirm Password</label>
+            <label for="password_confirmation">Confirm Password</label>
             <div class="input-group">
                 <i class="fas fa-lock"></i>
-                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password"
-                    required>
+                <input type="password" id="password_confirmation" name="password_confirmation"
+                    placeholder="Confirm your password" required>
                 <button type="button" class="toggle-password" aria-label="Toggle password visibility">
                     <i class="fas fa-eye"></i>
                 </button>
@@ -74,7 +87,7 @@
         </div>
 
         <div class="auth-footer">
-            Already have an account? <a href="/login">Sign in</a>
+            Already have an account? <a href="{{ route('login') }}">Sign in</a>
         </div>
     </form>
 @endsection

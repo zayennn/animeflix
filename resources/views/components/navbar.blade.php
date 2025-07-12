@@ -22,7 +22,7 @@
                     <span class="profile-name">{{ auth()->user()->name }}</span>
                     <div class="profile-dropdown" id="profile-dropdown">
                         <ul>
-                            <li><a href="{{ route('profile.edit') }}"><i class="fas fa-user"></i> Profile</a></li>
+                            <li><a href="#"><i class="fas fa-user"></i> Profile</a></li>
                             <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
                             <li>
                                 <form method="POST" action="{{ route('logout') }}" id="logout-form">

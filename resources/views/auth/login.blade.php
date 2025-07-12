@@ -1,17 +1,29 @@
 @extends('layouts.auth')
 @section('content')
     <div class="auth-header">
-        <a href="index.html" class="logo">Anime<span>Flix</span></a>
+        <a href="/" class="logo">Anime<span>Flix</span></a>
         <h1>Welcome Back</h1>
         <p>Login to continue your anime journey</p>
     </div>
 
-    <form id="loginForm" class="auth-form">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <form method="POST" action="{{ route('login') }}" class="auth-form">
+        @csrf
         <div class="form-group">
             <label for="email">Email</label>
             <div class="input-group">
                 <i class="fas fa-envelope"></i>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required
+                    value="{{ old('email') }}">
             </div>
         </div>
 
@@ -27,6 +39,11 @@
             <div class="forgot-password">
                 <a href="#">Forgot password?</a>
             </div>
+        </div>
+
+        <div class="form-group checkbox-group">
+            <input type="checkbox" id="remember" name="remember">
+            <label for="remember">Remember me</label>
         </div>
 
         <button type="submit" class="auth-btn">Login</button>
@@ -45,7 +62,7 @@
         </div>
 
         <div class="auth-footer">
-            Don't have an account? <a href="/register">Sign up</a>
+            Don't have an account? <a href="{{ route('register') }}">Sign up</a>
         </div>
     </form>
 @endsection
