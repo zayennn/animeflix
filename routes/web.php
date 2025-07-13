@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SocialAuthController;
 
 // Public Routes
 Route::get('/', function () {
@@ -22,6 +23,15 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
+
+// Social Auth Routes
+Route::prefix('auth')->group(function () {
+    Route::get('/google', [SocialAuthController::class, 'redirectToGoogle'])->name('login.google');
+    Route::get('/google/callback', [SocialAuthController::class, 'handleGoogleCallback']);
+
+    Route::get('/discord', [SocialAuthController::class, 'redirectToDiscord'])->name('login.discord');
+    Route::get('/discord/callback', [SocialAuthController::class, 'handleDiscordCallback']);
+});
 
 // Protected Routes
 Route::middleware(['auth'])->group(function () {

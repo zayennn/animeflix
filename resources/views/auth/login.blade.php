@@ -53,12 +53,12 @@
         </div>
 
         <div class="social-login">
-            <button type="button" class="social-btn google">
+            <a href="{{ route('login.google') }}" class="social-btn google">
                 <i class="fab fa-google"></i> Continue with Google
-            </button>
-            <button type="button" class="social-btn discord">
+            </a>
+            <a href="{{ route('login.discord') }}" class="social-btn discord">
                 <i class="fab fa-discord"></i> Continue with Discord
-            </button>
+            </a>
         </div>
 
         <div class="auth-footer">
